@@ -1,6 +1,6 @@
 # ISIS3301-P1
 
-## Miembors del equipo
+## Miembros del equipo
 
 * Juan Camilo Beltrán Garnica - 202121933
 * Juan Andrés Reyes - 202210295
