@@ -13,7 +13,7 @@
 | Nombre del Notebook | Descripción |
 | --------------------|-------------|
 | E1_Carga            | Este Notebook contiene  el proceso de perfilamiento, análisis de cálidad y vectorización de las palabras |
-| [Nombre DT]         | En este Notebook se hace uso del algoritmo arbol de decisión |
+| E1_M1_Arbol_de_decision | En este Notebook se hace uso del algoritmo arbol de decisión |
 | [Nombre KNN]        | En este Notebook se hace uso del algoritmo K-Nearest Neighbor |
 | E1_M1_Naive_Bayes_Multinomial | En este Notebook se hace uso del algoritmo Naive Bayes |
 
