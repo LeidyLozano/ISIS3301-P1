@@ -2,12 +2,17 @@ from typing import Optional
 
 from fastapi import FastAPI
 from joblib import load
-import DataModel
-import PredictionModel
+from DataModelPredict import DataModelPredict
+from DataModelTrain import DataModelTrain
+from DataModelListPredict import DataModelListPredict
+from DataModelListTrain import DataModelListTrain
 import pandas as pd
+from pipeline_classes import patch_main
 
 app = FastAPI()
 
+
+patch_main()
 
 @app.get("/")
 def read_root():
@@ -18,10 +23,20 @@ def read_root():
 def read_item(item_id: int, q: Optional[str] = None):
    return {"item_id": item_id, "q": q}
 
+
 @app.post("/predict")
-def make_predictions(dataModel: DataModel):
-    df = pd.DataFrame(dataModel.dict(), columns=dataModel.dict().keys(), index=[0])
-    df.columns = dataModel.columns()
-    model = load("assets/modelo.joblib")
+def make_predictions(dataModelList: DataModelListPredict):
+    list = dataModelList.model_dump()["entries"]
+    df = pd.DataFrame(list) 
+    model = load("assets/model.joblib")
     result = model.predict(df)
-    return result
+    return {"prediction": result.tolist()}
+
+@app.post("/retrain")
+def make_predictions(dataModelList: DataModelListTrain):
+    list = dataModelList.model_dump()["entries"]
+    df = pd.DataFrame(list) 
+    model = load("assets/model.joblib")
+    result = model.predict(df)
+    return {"prediction": result.tolist()}
+

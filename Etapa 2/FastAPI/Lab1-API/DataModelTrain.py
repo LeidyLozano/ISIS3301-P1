@@ -1,12 +1,12 @@
 from pydantic import BaseModel
 
-class DataModel(BaseModel):
+class DataModelTrain(BaseModel):
 
 # Estas varibles permiten que la librería pydantic haga el parseo entre el Json recibido y el modelo declarado.
-    year: float
-    km_driven: float
+    Textos_espanol: str
+    sdg : int
     #COMPLETAR CON LAS VARIABLES EXPLICATIVAS DE LOS DATOS DEL LABORATORIO 1
 
 #Esta función retorna los nombres de las columnas correspondientes con el modelo exportado en joblib.
     def columns(self):
-        return ["year","km_driven", ...]
+        return ["Textos_espanol","sdg"]
