@@ -4,8 +4,8 @@ import { Container, Button, Alert } from 'react-bootstrap';
 
 export default function SubmitEntrenamiento() {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [results, setResults] = useState(null); // State for storing API results
-  const [error, setError] = useState(null); // State for error handling
+  const [results, setResults] = useState(null); 
+  const [error, setError] = useState(null); 
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -18,10 +18,10 @@ export default function SubmitEntrenamiento() {
     }
 
     const formData = new FormData();
-    formData.append("file", selectedFile); // Append the file to FormData
+    formData.append("file", selectedFile); 
 
     try {
-      const response = await fetch("http://localhost:8000/retrain", { // Adjust the URL if necessary
+      const response = await fetch("http://localhost:8000/retrain", { 
         method: "POST",
         body: formData,
       });
