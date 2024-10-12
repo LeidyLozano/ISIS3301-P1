@@ -132,7 +132,7 @@ def patch_main():
 
 
 
-def retrain(df):
+async def retrain(df):
     pipeline_data = df
     
     Y = pipeline_data['sdg']
@@ -152,6 +152,15 @@ def retrain(df):
                'modelo__metric' : ['minkowski','euclidean','manhattan']}
     grid_searach = GridSearchCV(pipeline, grid_params, verbose=1, cv=particiones, n_jobs = -1)
     grid_searach = grid_searach.fit(X_train , Y_train)
+    mejor_modelo = grid_searach.best_estimator_
+    y_pred_test = mejor_modelo.predict(X_test)
+    classification_rep = classification_report(Y_test, y_pred_test,output_dict=True)
+    filename = 'model.joblib'
+    dump(mejor_modelo, filename)
 
+    return classification_report
     
+
+
+
 

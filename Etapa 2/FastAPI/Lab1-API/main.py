@@ -7,7 +7,7 @@ from DataModelTrain import DataModelTrain
 from DataModelListPredict import DataModelListPredict
 from DataModelListTrain import DataModelListTrain
 import pandas as pd
-from pipeline_classes import patch_main
+from pipeline_classes import patch_main,retrain
 
 app = FastAPI()
 
@@ -33,10 +33,9 @@ def make_predictions(dataModelList: DataModelListPredict):
     return {"prediction": result.tolist()}
 
 @app.post("/retrain")
-def make_predictions(dataModelList: DataModelListTrain):
+def retrain_model(dataModelList: DataModelListTrain):
     list = dataModelList.model_dump()["entries"]
     df = pd.DataFrame(list) 
-    model = load("assets/model.joblib")
-    result = model.predict(df)
-    return {"prediction": result.tolist()}
+    results = retrain(df)
+    return {"results": results}
 
