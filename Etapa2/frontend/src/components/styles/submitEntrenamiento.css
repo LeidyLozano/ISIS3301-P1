@@ -1,0 +1,108 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+
+.upload-button {
+    /* Adjust these values to your preference */
+    background-color: #fa981d; /* Blue color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .upload-button:hover {
+    background-color: #0062cc; /* Darker blue on hover */
+  }
+
+  h1, h3 {
+    text-align: left;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  input[type="file"]::file-selector-button {
+    display: none; /* Hide the default button */
+  }
+  
+  input[type="file"]::before {
+    content: attr(data-label); /* Display the selected file name */
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #fa981d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  input[type="file"]:hover::before {
+    background-color: #0062cc;
+  }
+
+ 
+.container {
+    margin-top: 30px;
+  }
+  
+  .upload-button {
+    margin: 10px;
+  }
+  
+  table {
+    width: 100%;
+    table-layout: auto;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  thead th {
+    background-color: #f8f9fa;
+    padding: 10px;
+    font-weight: bold;
+    text-align: left;
+    border-bottom: 2px solid #dee2e6;
+  }
+  
+  tbody td {
+    padding: 10px;
+    border-bottom: 1px solid #dee2e6;
+    word-wrap: break-word; /* Ensures long text breaks into the next line */
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  @media screen and (max-width: 768px) {
+    table {
+      width: 100%;
+      display: block;
+      overflow-x: auto; /* Make the table scrollable on small screens */
+    }
+    
+    thead {
+      display: table-header-group;
+    }
+    
+    tbody {
+      display: table-row-group;
+    }
+    
+    tr {
+      display: table-row;
+    }
+    
+    td, th {
+      display: table-cell;
+      padding: 8px;
+    }
+  }
+  

@@ -1,5 +1,6 @@
 import React from "react";
 import { CustomNavbar } from "./CustomNavbar";
+import SubmitEntrenamiento from "./SubmitEntrenamiento";
 
 export default function Entrenamiento() {
     const nav_links = [
@@ -10,7 +11,7 @@ export default function Entrenamiento() {
     return (
         <div>
             <CustomNavbar nav_links={nav_links}/>
-            <h1>Entrenamiento</h1>
+            <SubmitEntrenamiento/>
         </div>
     );
 }

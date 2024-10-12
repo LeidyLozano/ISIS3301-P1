@@ -11,7 +11,7 @@ export default function Muestra() {
         { name: "Reentrenar", url: "/Entrenamiento" }
       ]} />
       <Container>
-        <SubmitMuestra /> {/* Use the imported component directly */}
+        <SubmitMuestra /> 
       </Container>
     </div>
   );
