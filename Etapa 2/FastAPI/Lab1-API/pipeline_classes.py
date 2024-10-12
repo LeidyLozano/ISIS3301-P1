@@ -132,7 +132,7 @@ def patch_main():
 
 
 
-async def retrain(df):
+def retrain(df):
     pipeline_data = df
     
     Y = pipeline_data['sdg']
@@ -155,10 +155,10 @@ async def retrain(df):
     mejor_modelo = grid_searach.best_estimator_
     y_pred_test = mejor_modelo.predict(X_test)
     classification_rep = classification_report(Y_test, y_pred_test,output_dict=True)
-    filename = 'model.joblib'
+    filename = 'assets/model.joblib'
     dump(mejor_modelo, filename)
 
-    return classification_report
+    return classification_rep
     
 
 
