@@ -82,13 +82,40 @@ export default function SubmitEntrenamiento() {
               </tr>
             </thead>
             <tbody>
-              {Object.keys(results).map((label) => (
+              {Object.keys(results).filter((key) => !["accuracy", "macro avg", "weighted avg"].includes(key)).map((label) => (
                 <tr key={label}>
                   <td>{label}</td>
-                  <td>{results[label].precision}</td>
-                  <td>{results[label].recall}</td>
-                  <td>{results[label]["f1-score"]}</td>
+                  <td>{results[label].precision.toFixed(2)}</td>
+                  <td>{results[label].recall.toFixed(2)}</td>
+                  <td>{results[label]["f1-score"].toFixed(2)}</td>
                   <td>{results[label].support}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+
+          <h3>Métricas globales</h3>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Métrica</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Accuracy</td>
+                <td>{results.accuracy.toFixed(2)}</td>
+              </tr>
+              {["macro avg", "weighted avg"].map((key) => (
+                <tr key={key}>
+                  <td>{key}</td>
+                  <td>
+                    Precision: {results[key].precision.toFixed(2)} <br />
+                    Recall: {results[key].recall.toFixed(2)} <br />
+                    F1-Score: {results[key]["f1-score"].toFixed(2)} <br />
+                    Support: {results[key].support}
+                  </td>
                 </tr>
               ))}
             </tbody>
