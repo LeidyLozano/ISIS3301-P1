@@ -10,9 +10,20 @@ import pandas as pd
 from pipeline_classes import patch_main,retrain
 import openpyxl 
 from io import BytesIO
+from fastapi.middleware.cors import CORSMiddleware
 
 
 app = FastAPI()
+
+origins = ['*']
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 patch_main()
