@@ -28,22 +28,22 @@ def read_item(item_id: int, q: Optional[str] = None):
 
 
 @app.post("/predict")
-def make_predictions(file: UploadFile = File(...)):
+async def make_predictions(file: UploadFile = File(...)):
     if file.content_type != 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
         return {"error": "Formato Invalido. Asegurese de subir un archivo Excel (.xlsx)"}
     
-    contents = file.read()
+    contents = await file.read()
     df = pd.read_excel(BytesIO(contents)) 
     model = load("assets/model.joblib")
     result = model.predict(df)
     return {"prediction": result.tolist()}
 
 @app.post("/retrain")
-def retrain_model(file: UploadFile = File(...)):
+async def retrain_model(file: UploadFile = File(...)):
     if file.content_type != 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
         return {"error": "Formato Invalido. Asegurese de subir un archivo Excel (.xlsx)."}
     
-    contents = file.read()
+    contents = await file.read()
     df = pd.read_excel(BytesIO(contents)) 
     results = retrain(df)
     return {"results": results}
