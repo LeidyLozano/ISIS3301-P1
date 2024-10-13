@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "./styles/submitEntrenamiento.css";
-import { Container, Button, Alert } from 'react-bootstrap';
+import { Container, Button, Alert, Table } from 'react-bootstrap';
 
 export default function SubmitEntrenamiento() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -67,10 +67,32 @@ export default function SubmitEntrenamiento() {
       </Button>
       
       {error && <Alert variant="danger" className="mt-3">{error}</Alert>} 
+
       {results && (
         <div className="mt-3">
           <h3>Resultados del reentrenamiento</h3>
-          <pre>{JSON.stringify(results, null, 2)}</pre> 
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Label</th>
+                <th>Precision</th>
+                <th>Recall</th>
+                <th>F1-Score</th>
+                <th>Support</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.keys(results).map((label) => (
+                <tr key={label}>
+                  <td>{label}</td>
+                  <td>{results[label].precision}</td>
+                  <td>{results[label].recall}</td>
+                  <td>{results[label]["f1-score"]}</td>
+                  <td>{results[label].support}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
         </div>
       )}
     </Container>
